@@ -1,0 +1,12 @@
+{{- if .Values.svcaccount.create -}}
+apiVersion: v1
+kind: svcaccount
+metadata:
+  name: {{ include "guestbook.svcaccountName" . }}
+  labels:
+    {{- include "guestbook.labels" . | nindent 4 }}
+  {{- with .Values.svcaccount.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }}
